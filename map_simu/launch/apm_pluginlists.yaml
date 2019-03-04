@@ -1,0 +1,14 @@
+plugin_blacklist:
+- safety_area
+- hil
+# extras
+#- altitude
+- debug_value
+- image_pub
+- mocap_pose_estimate
+- px4flow
+- vibration
+- vision_speed_estimate
+- gps
+plugin_whitelist: []
+#- 'sys_*'
