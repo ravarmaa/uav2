@@ -1,0 +1,12 @@
+frequency: 10
+two_d_mode: false
+publish_tf: true
+
+base_link_frame: base_link
+world_map: map
+map_frame: map
+
+imu0: /imu
+
+
+gps0: /fix
