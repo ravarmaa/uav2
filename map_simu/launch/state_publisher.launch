@@ -1,0 +1,4 @@
+<launch>
+    <param name="robot_description" textfile="$(find map_simu)/models/drone_links/drone_links.urdf"/>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+</launch>

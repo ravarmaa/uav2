@@ -1,0 +1,109 @@
+<launch>  
+
+  <!-- This launch assumes that you have already 
+       started you preferred RGB-D sensor and your IMU.
+       TF between frame_id and the sensors should already be set too. -->
+
+  <arg name="frame_id"                default="fcu" />
+  <arg name="rgb_topic"               default="/camera/rgb/image_rect_color" />
+  <arg name="depth_topic"             default="/camera/depth_registered/sw_registered/image_rect_raw" />
+  <arg name="camera_info_topic"       default="/camera/rgb/camera_info" />
+  <arg name="imu_topic"               default="/mavros/imu/data" />
+  <arg name="imu_ignore_acc"          default="true" />
+  <arg name="imu_remove_gravitational_acceleration" default="true" />
+
+  <arg name="rviz"                    default="true" />
+  <arg name="rviz_cfg"                default="$(find rtabmap_ros)/launch/config/rgbd.rviz" />
+  <arg name="output"                  default="screen"/>
+  <arg name="stereo"          default="false"/>
+  <arg name="rgbd_sync"               default="false"/>
+  <arg name="subscribe_rgbd"          default="$(arg rgbd_sync)"/>
+  <arg name="rgb_topic_relay"           default="$(arg rgb_topic)"/>
+  <arg name="depth_topic_relay"         default="$(arg depth_topic)"/>
+  <arg name="rgbd_topic"              default="rgbd_image" />
+  <arg name="approx_sync"  default="true"/>
+
+  <!-- Localization-only mode -->
+  <arg name="localization"      default="false"/>
+  <arg     if="$(arg localization)" name="rtabmap_args"  default=""/>
+  <arg unless="$(arg localization)" name="rtabmap_args"  default="--delete_db_on_start"/>  
+  
+  <group ns="rtabmap">
+    <!-- Visual Odometry -->
+    <node pkg="rtabmap_ros" type="rgbd_odometry" name="visual_odometry" output="screen" args="$(arg rtabmap_args)">
+      <remap from="rgb/image"       to="$(arg rgb_topic)"/>
+      <remap from="depth/image"     to="$(arg depth_topic)"/>
+      <remap from="rgb/camera_info" to="$(arg camera_info_topic)"/>
+      <remap from="odom"            to="/vo"/>
+
+      <param name="frame_id"               type="string" value="$(arg frame_id)"/>
+      <param name="publish_tf"             type="bool"   value="false"/>
+      <param name="publish_null_when_lost" type="bool"   value="true"/>
+      <param name="guess_from_tf"          type="bool"   value="true"/>
+
+      <param name="Odom/FillInfoData"      type="string" value="true"/>
+      <param name="Odom/ResetCountdown"    type="string" value="1"/>
+      <param name="Vis/FeatureType"        type="string" value="6"/> 
+      <param name="OdomF2M/MaxSize"        type="string" value="1000"/>
+      
+    </node>
+
+    <!-- SLAM -->
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="$(arg rtabmap_args)">
+      <param name="frame_id"        type="string" value="$(arg frame_id)"/>
+ 
+      <remap from="rgb/image"       to="$(arg rgb_topic)"/>
+      <remap from="depth/image"     to="$(arg depth_topic)"/>
+      <remap from="rgb/camera_info" to="$(arg camera_info_topic)"/>
+      <remap from="odom"            to="/odometry/filtered1"/>
+      
+      <param name="Kp/DetectorStrategy"    type="string" value="6"/> <!-- use same features as odom -->
+
+      <!-- localization mode -->
+      <param name="Mem/InitWMWithAllNodes" type="string" value="$(arg localization)"/> 
+      <param     if="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="false"/>
+      <param unless="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="true"/>
+      
+    </node>
+  </group>
+
+    <!-- EKF nodes + navsat transform -->
+  <group ns="map_simu"> 
+  <rosparam command="load" file="$(find map_simu)/launch/config/ekf_params.yaml" />
+  <rosparam command="load" file="$(find map_simu)/launch/config/navsat_params_sim.yaml" />
+ 
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true"/>
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_map" clear_params="true">
+    <remap from="odometry/filtered" to="odometry/filtered_map"/>
+  </node>
+
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" clear_params="true" output="screen" >
+      <remap from="odometry/filtered" to="odometry/filtered_map"/>
+      <remap from="/gps/fix" to="/navsat/fix"/>
+      <remap from="/imu/data" to="/imu/data"/>
+  </node>
+  </group>
+
+      <!-- Visualization RVIZ -->
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_cfg)"/>
+  <node if="$(arg rviz)" pkg="nodelet" type="nodelet" name="points_xyzrgb" args="standalone rtabmap_ros/point_cloud_xyzrgb" output="$(arg output)">
+  <remap if="$(arg stereo)" from="left/image"        to="$(arg left_image_topic_relay)"/>
+  <remap if="$(arg stereo)" from="right/image"       to="$(arg right_image_topic_relay)"/>
+  <remap if="$(arg stereo)" from="left/camera_info"  to="$(arg left_camera_info_topic)"/>
+  <remap if="$(arg stereo)" from="right/camera_info" to="$(arg right_camera_info_topic)"/>
+  <remap unless="$(arg subscribe_rgbd)" from="rgb/image"         to="$(arg rgb_topic_relay)"/>
+  <remap unless="$(arg subscribe_rgbd)" from="depth/image"       to="$(arg depth_topic_relay)"/>
+  <remap unless="$(arg subscribe_rgbd)" from="rgb/camera_info"   to="$(arg camera_info_topic)"/>
+  <remap     if="$(arg rgbd_sync)" from="rgbd_image" to="$(arg rgbd_topic)"/>
+  <remap unless="$(arg rgbd_sync)" from="rgbd_image" to="$(arg rgbd_topic)_relay"/>
+  <remap from="cloud"             to="voxel_cloud" />
+
+  <param name="decimation"  type="double" value="4"/>
+  <param name="voxel_size"  type="double" value="0.0"/>
+  <param name="approx_sync" type="bool"   value="$(arg approx_sync)"/>
+  </node>
+
+
+
+</launch>
