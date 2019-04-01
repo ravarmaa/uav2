@@ -51,11 +51,12 @@
     <!-- SLAM -->
     <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="$(arg rtabmap_args)">
       <param name="frame_id"        type="string" value="$(arg frame_id)"/>
- 
+      <param name="publish_tf" type="bool" value="false"/>
+
       <remap from="rgb/image"       to="$(arg rgb_topic)"/>
       <remap from="depth/image"     to="$(arg depth_topic)"/>
       <remap from="rgb/camera_info" to="$(arg camera_info_topic)"/>
-      <remap from="odom"            to="/odometry/filtered1"/>
+      <remap from="odom"            to="/map_simu/odometry/filtered_map"/>
       
       <param name="Kp/DetectorStrategy"    type="string" value="6"/> <!-- use same features as odom -->
 

@@ -4,7 +4,7 @@
     <include>
       <uri>model://iris_with_standoffs</uri>
     </include>
-
+<!--
     <include>
       <uri>model://kinect_depth</uri>
       <pose>0.03 0 0.13 0 0.6 0</pose>
@@ -23,7 +23,7 @@
       </axis>
     </joint>
 
-    <!-- plugins -->
+     plugins -->
 
     <plugin name="gps" filename="libhector_gazebo_ros_gps.so">
       <always_on>1</always_on>

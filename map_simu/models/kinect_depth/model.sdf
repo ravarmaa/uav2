@@ -3,9 +3,7 @@
   <model name="kinect_depth">
     <pose>0 0 0.036 0 0 0</pose>
     <link name="cam_link">
-      <inertial>
-        <mass>0.1</mass>
-      </inertial>
+
       <collision name="collision">
         <geometry>
           <box>
