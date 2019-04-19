@@ -1,0 +1,4 @@
+<launch> 
+    <node name="joy_node" pkg="joy" type="joy_node"> </node>
+    <node name="teleop" pkg="map_simu" type="teleop"> </node>
+</launch> 

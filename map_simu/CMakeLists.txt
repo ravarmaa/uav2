@@ -200,3 +200,6 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(teleop src/teleop.cpp)
+target_link_libraries(teleop ${catkin_LIBRARIES})
