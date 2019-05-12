@@ -2,16 +2,16 @@
 <sdf version="1.6" xmlns:xacro='http://ros.org/wiki/xacro'>
   <model name="iris_kinect">
     <include>
-      <uri>model://iris_with_standoffs</uri>
+      <uri>model://iris_base</uri>
     </include>
-<!--
+ 
     <include>
       <uri>model://kinect_depth</uri>
       <pose>0.03 0 0.13 0 0.6 0</pose>
     </include>
 
     <joint name="cam_mount" type="fixed">
-      <parent>iris::base_link</parent>
+      <parent>iris_base::base_link</parent>
       <child>kinect::cam_link</child>
       <axis>
         <limit>
@@ -23,12 +23,12 @@
       </axis>
     </joint>
 
-     plugins -->
+    <!-- plugins -->
 
     <plugin name="gps" filename="libhector_gazebo_ros_gps.so">
       <always_on>1</always_on>
       <updateRate>10</updateRate>
-      <bodyName>iris::base_link</bodyName>
+      <bodyName>iris_base::base_link</bodyName>
       <topicName>/fix</topicName>
       <velocityTopicName>/vel</velocityTopicName>
       <drift>5.0 5.0 5.0</drift>
@@ -40,7 +40,7 @@
     <plugin name="imu" filename="libhector_gazebo_ros_imu.so">
       <serviceName>/imu/calibrate</serviceName>
       <updateRate>10.0</updateRate>
-      <bodyName>iris::base_link</bodyName>
+      <bodyName>iris_base::base_link</bodyName>
       <topicName>imu</topicName>
       <rpyOffset>0 0 0</rpyOffset>
       <xyzOffset>0 0 0</xyzOffset>
@@ -70,7 +70,7 @@
       <cp>0.084 0 0</cp>
       <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_0</link_name>
+      <link_name>iris_base::rotor_0</link_name>
     </plugin>
     <plugin name="rotor_0_blade_2" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
@@ -86,7 +86,7 @@
       <cp>-0.084 0 0</cp>
       <forward>0 -1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_0</link_name>
+      <link_name>iris_base::rotor_0</link_name>
     </plugin>
 
     <plugin name="rotor_1_blade_1" filename="libLiftDragPlugin.so">
@@ -103,7 +103,7 @@
       <cp>0.084 0 0</cp>
       <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_1</link_name>
+      <link_name>iris_base::rotor_1</link_name>
     </plugin>
     <plugin name="rotor_1_blade_2" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
@@ -119,7 +119,7 @@
       <cp>-0.084 0 0</cp>
       <forward>0 -1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_1</link_name>
+      <link_name>iris_base::rotor_1</link_name>
     </plugin>
 
     <plugin name="rotor_2_blade_1" filename="libLiftDragPlugin.so">
@@ -136,7 +136,7 @@
       <cp>0.084 0 0</cp>
       <forward>0 -1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_2</link_name>
+      <link_name>iris_base::rotor_2</link_name>
     </plugin>
     <plugin name="rotor_2_blade_2" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
@@ -152,7 +152,7 @@
       <cp>-0.084 0 0</cp>
       <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_2</link_name>
+      <link_name>iris_base::rotor_2</link_name>
     </plugin>
 
     <plugin name="rotor_3_blade_1" filename="libLiftDragPlugin.so">
@@ -169,7 +169,7 @@
       <cp>0.084 0 0</cp>
       <forward>0 -1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_3</link_name>
+      <link_name>iris_base::rotor_3</link_name>
     </plugin>
     <plugin name="rotor_3_blade_2" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
@@ -185,8 +185,9 @@
       <cp>-0.084 0 0</cp>
       <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>iris::rotor_3</link_name>
+      <link_name>iris_base::rotor_3</link_name>
     </plugin>
+    
     <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
       <fdm_addr>127.0.0.1</fdm_addr>
       <fdm_port_in>9002</fdm_port_in>
@@ -197,7 +198,7 @@
       -->
       <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
       <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
-      <imuName>iris_kinect::iris::iris/imu_link::imu_sensor</imuName>
+      <imuName>iris_kinect::iris_base::iris/imu_link::imu_sensor</imuName>
       <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
       <control channel="0">
       <!--
@@ -216,7 +217,7 @@
         <i_min>0</i_min>
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
-        <jointName>iris::rotor_0_joint</jointName>
+        <jointName>iris_base::rotor_0_joint</jointName>
         <multiplier>838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
@@ -230,7 +231,7 @@
         <i_min>0</i_min>
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
-        <jointName>iris::rotor_1_joint</jointName>
+        <jointName>iris_base::rotor_1_joint</jointName>
         <multiplier>838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
@@ -244,7 +245,7 @@
         <i_min>0</i_min>
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
-        <jointName>iris::rotor_2_joint</jointName>
+        <jointName>iris_base::rotor_2_joint</jointName>
         <multiplier>-838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
@@ -258,7 +259,7 @@
         <i_min>0</i_min>
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
-        <jointName>iris::rotor_3_joint</jointName>
+        <jointName>iris_base::rotor_3_joint</jointName>
         <multiplier>-838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>

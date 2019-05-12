@@ -33,7 +33,7 @@ Teleop::Teleop():
   YAW(3),
 // Other values
   mid(1500),
-  offset(500)
+  offset(100)
 {
   rc_message = nh_.advertise<mavros_msgs::OverrideRCIn>("/mavros/rc/override", 1, true);
   joy_sub = nh_.subscribe<sensor_msgs::Joy>("joy", 10, &Teleop::joyCallback, this);
@@ -43,7 +43,7 @@ void Teleop::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
   mavros_msgs::OverrideRCIn rc_command;
   rc_command.channels[THROTTLE] = mid + offset*joy->axes[throttle];
-  rc_command.channels[YAW] = mid + offset*joy->axes[yaw];
+  rc_command.channels[YAW] = mid - offset*joy->axes[yaw];
   rc_command.channels[PITCH] = mid - offset*joy->axes[pitch];
   rc_command.channels[ROLL] = mid - offset*joy->axes[roll];
 

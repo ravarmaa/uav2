@@ -1,16 +1,22 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="kinect_depth">
+  <model name="kinect">
     <pose>0 0 0.036 0 0 0</pose>
     <link name="cam_link">
 
-      <collision name="collision">
-        <geometry>
-          <box>
-            <size>0.073000 0.276000 0.072000</size>
-          </box>
-        </geometry>
-      </collision>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0001</iyy>
+          <iyz>0</iyz>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+      
       <visual name="visual">
         <geometry>
           <mesh>
@@ -29,7 +35,7 @@
                 </image>
                 <clip>
                     <near>0.05</near>
-                    <far>3</far>
+                    <far>15</far>
                 </clip>
             </camera>
             <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">

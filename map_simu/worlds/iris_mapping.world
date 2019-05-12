@@ -47,7 +47,7 @@ LOITER> mode LAND
             <ode>
                 <solver>
                     <type>quick</type>
-                    <iters>10</iters>
+                    <iters>20</iters>
                     <sor>1.3</sor>
                     <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
                 </solver>
