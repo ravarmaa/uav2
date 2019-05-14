@@ -1,0 +1,1 @@
+rosbag record /camera/rgb/image_rect_color /camera/depth_registered/sw_registered/image_rect_raw /camera/rgb/camera_info /mavros/imu/data /mavros/global_position/global /tf_static /tf

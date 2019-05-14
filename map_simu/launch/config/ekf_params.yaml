@@ -148,7 +148,7 @@ ekf_se_map:
 # --------------------------------------
 # imu configure:
 
-  imu0: /map_simu/imu/data
+  imu0: /mavros/imu/data
   imu0_config: [false, false, false,
                 true,  true, false,
                 false, false, false,
