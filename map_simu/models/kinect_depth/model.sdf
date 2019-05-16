@@ -50,7 +50,7 @@
                 <depthImageTopicName>/camera/depth_registered/sw_registered/image_rect_raw</depthImageTopicName>
                 <depthImageInfoTopicName>/camera/depth/camera_info</depthImageInfoTopicName>
                 <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
-                <frameName>camera_link</frameName>
+                <frameName>camera_rgb_optical_frame</frameName>
                 <pointCloudCutoff>0.05</pointCloudCutoff>
                 <distortionK1>0</distortionK1>
                 <distortionK2>0</distortionK2>

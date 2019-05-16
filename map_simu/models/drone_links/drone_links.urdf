@@ -1,9 +1,8 @@
 <robot name="drone_links">
     <link name="fcu" />
     <link name="base_link" />
-    <link name="camera_link" />
     <link name="camera_rgb_optical_frame" />
-    <link name="camera_link" />
+    <link name="camera_depth_optical_frame" />
 
     <joint name="base_joint" type="fixed">
         <parent link="fcu"/>
@@ -22,6 +21,8 @@
         <child link="camera_depth_optical_frame"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
+
+    
 
 
 
