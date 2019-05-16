@@ -2,8 +2,8 @@
     <link name="fcu" />
     <link name="base_link" />
     <link name="camera_link" />
-    <link name="imu_link" />
-    <link name="gps_link" />
+    <link name="camera_rgb_optical_frame" />
+    <link name="camera_link" />
 
     <joint name="base_joint" type="fixed">
         <parent link="fcu"/>
@@ -11,22 +11,18 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
 
-    <joint name="camera_joint" type="fixed">
+    <joint name="camera_rgb_optical_frame_joint" type="fixed">
         <parent link="base_link"/>
-        <child link="camera_link"/>
+        <child link="camera_rgb_optical_frame"/>
         <origin xyz="0.03 0 0.13" rpy="-2.17079632679 0 -1.57079632679" />
     </joint>
 
-    <joint name="imu_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="imu_link"/>
+    <joint name="camera_depth_optical_frame_joint" type="fixed">
+        <parent link="camera_rgb_optical_frame"/>
+        <child link="camera_depth_optical_frame"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
 
-    <joint name="gps_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="gps_link"/>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-    </joint>
+
 
 </robot>

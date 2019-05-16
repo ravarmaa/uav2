@@ -25,36 +25,6 @@
 
     <!-- plugins -->
 
-    <plugin name="gps" filename="libhector_gazebo_ros_gps.so">
-      <always_on>1</always_on>
-      <updateRate>10</updateRate>
-      <bodyName>iris_base::base_link</bodyName>
-      <topicName>/fix</topicName>
-      <velocityTopicName>/vel</velocityTopicName>
-      <drift>5.0 5.0 5.0</drift>
-      <gaussianNoise>0.0000000 0.0000000 0.0000000</gaussianNoise>
-      <velocityDrift>0 0 0</velocityDrift>
-      <velocityGaussianNoise>0.0000000 0.0000000 0.0000000</velocityGaussianNoise>
-    </plugin>
-
-    <plugin name="imu" filename="libhector_gazebo_ros_imu.so">
-      <serviceName>/imu/calibrate</serviceName>
-      <updateRate>10.0</updateRate>
-      <bodyName>iris_base::base_link</bodyName>
-      <topicName>imu</topicName>
-      <rpyOffset>0 0 0</rpyOffset>
-      <xyzOffset>0 0 0</xyzOffset>
-      <gaussianNoise>0.00000001</gaussianNoise>
-      <accelDrift>0.00000000 0.00000000 0.00000000</accelDrift>
-      <accelDriftFrequency>0.00000000 0.00000000 0.00000000</accelDriftFrequency>
-      <accelGaussianNoise>0.00000000 0.00000000 0.00000000</accelGaussianNoise>
-      <rateDrift>0.0 0.0 0.0</rateDrift>
-      <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
-      <rateGaussianNoise>0.0 0.0 0.0</rateGaussianNoise>
-      <headingDrift>0.0 0.0 0.0</headingDrift>
-      <headingDriftFrequency>0.0 0.0 0.0</headingDriftFrequency>
-      <headingGaussianNoise>0.0 0.0 0.0</headingGaussianNoise>
-    </plugin>
 
     <plugin name="rotor_0_blade_1" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
