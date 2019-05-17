@@ -24,10 +24,14 @@
     <arg name="depth_fps"           default="" />
     <arg name="color_fps"           default="" />
 
-  	<arg name="color_enable_auto_exposure"           default="" />
-	<arg name="color_exposure"         		 default="" />
-	<arg name="color_gain"        			 default="" />
-	<arg name="color_sharpness"          		 default="" />
+    <arg name="r200_lr_auto_exposure_enabled"           default="" />
+  	<arg name="color_enable_auto_exposure"              default="" />
+	<arg name="color_exposure"         		            default="" />
+	<arg name="color_gain"        			            default="" />
+	<arg name="color_sharpness"          		        default="" />
+    <arg name="r200_emitter_enabled"          		        default="" />
+    <arg name="r200_lr_exposure"          		        default="" />
+    <arg name="r200_lr_gain"          		        default="" />
 
     <arg name="enable_depth"        default="true" />
     <arg name="enable_color"        default="true" />
@@ -75,10 +79,14 @@
         <param name="fisheye_optical_frame_id" type="str"  value="$(arg camera)_$(arg fisheye)_optical_frame" />
         <param name="imu_optical_frame_id"    type="str"  value="$(arg camera)_$(arg imu)_optical_frame" />
 
-	<param name="$(arg camera)/driver/color_enable_auto_exposure"  type="int"  value="$(arg color_enable_auto_exposure)" />
- 	<param name="$(arg camera)/driver/color_exposure"      type="int"    value="$(arg color_exposure)" />
-	<param name="$(arg camera)/driver/color_gain"          type="int"    value="$(arg color_gain)" />
-	<param name="$(arg camera)/driver/color_sharpness"     type="int"    value="$(arg color_sharpness)" />
+    <param name="r200_lr_auto_exposure_enabled"  type="int"  value="$(arg r200_lr_auto_exposure_enabled)" />
+	<param name="color_enable_auto_exposure"  type="int"  value="$(arg color_enable_auto_exposure)" />
+ 	<param name="color_exposure"      type="int"    value="$(arg color_exposure)" />
+	<param name="color_gain"          type="int"    value="$(arg color_gain)" />
+	<param name="color_sharpness"     type="int"    value="$(arg color_sharpness)" />
+    <param name="r200_emitter_enabled"          type="int"    value="$(arg r200_emitter_enabled)" />
+    <param name="r200_lr_exposure"          type="int"    value="$(arg r200_lr_exposure)" />
+    <param name="r200_lr_gain"          type="int"    value="$(arg r200_lr_gain)" />
 
         <remap from="depth"    to="$(arg depth)" />
         <remap from="color"    to="$(arg rgb)" />

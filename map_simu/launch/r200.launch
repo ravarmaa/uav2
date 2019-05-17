@@ -23,10 +23,15 @@
 
  <!-- Exposure, gain and sharpness parameters -->
 
-  	<arg name="color_enable_auto_exposure"           default="0" />
-	<arg name="color_exposure"         		 default="100" />
-	<arg name="color_gain"        			 default="250" />
-	<arg name="color_sharpness"          		 default="1" />
+  <arg name="r200_lr_auto_exposure_enabled"   default="0" />
+  <arg name="color_enable_auto_exposure"      default="1" />
+	<arg name="color_exposure"         		      default="156" />
+	<arg name="color_gain"        			        default="32" />
+	<arg name="color_sharpness"          		    default="1" />
+  <arg name="r200_emitter_enabled"          	default="1" />
+  <arg name="r200_lr_exposure"          		  default="1" />
+  <arg name="r200_lr_gain"          		      default="589" />
+
 
   <!-- Arguments for remapping all device namespaces -->
   <arg name="depth"            default="depth" />
@@ -95,10 +100,16 @@
       <arg name="color_height"              value="$(arg color_height)" />
       <arg name="depth_fps"                 value="$(arg depth_fps)" />
       <arg name="color_fps"                 value="$(arg color_fps)" />
-	<arg name="color_enable_auto_exposure"          value="$(arg color_enable_auto_exposure)" />
-	<arg name="color_exposure"           		value="$(arg color_exposure)" />
-	<arg name="color_gain"           		value="$(arg color_gain)" />
-	<arg name="color_sharpness"           		value="$(arg color_sharpness)" />
+
+      <arg name="r200_lr_auto_exposure_enabled"   value="$(arg r200_lr_auto_exposure_enabled)" />
+	    <arg name="color_enable_auto_exposure"      value="$(arg color_enable_auto_exposure)" />
+	    <arg name="color_exposure"           	    	value="$(arg color_exposure)" />
+	    <arg name="color_gain"           	        	value="$(arg color_gain)" />
+	    <arg name="color_sharpness"           	  	value="$(arg color_sharpness)" />
+      <arg name="r200_emitter_enabled"           	value="$(arg r200_emitter_enabled)" />
+      <arg name="r200_lr_exposure"           	  	value="$(arg r200_lr_exposure)" />
+      <arg name="r200_lr_gain"           	      	value="$(arg r200_lr_gain)" />
+
     </include>
 
     <!-- Load standard constellation of processing nodelets -->

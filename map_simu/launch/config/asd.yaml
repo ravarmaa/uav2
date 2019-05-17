@@ -1,0 +1,67 @@
+
+  color_backlight_compensation: 1
+  color_brightness: 56
+  color_contrast: 32
+  color_enable_auto_exposure: 1
+  color_enable_auto_white_balance: 1
+  color_exposure: 156
+  color_gain: 32
+  color_gamma: 197
+  color_hue: 0
+  color_saturation: 128
+  color_sharpness: 2
+  color_white_balance: 6498
+ 
+  color_backlight_compensation: 1
+  color_brightness: 56
+  color_contrast: 32
+  color_enable_auto_exposure: 1
+  color_enable_auto_white_balance: 1
+  color_exposure: 156
+  color_gain: 32
+  color_gamma: 197
+  color_hue: 0
+  color_saturation: 128
+  color_sharpness: 2
+  color_white_balance: 6498
+
+  r200_dc_estimate_median_decrement: 5
+  r200_dc_estimate_median_increment: 5
+  r200_dc_lr_threshold: 14
+  r200_dc_median_threshold: 185
+  r200_dc_neighbor_threshold: 45
+  r200_dc_preset: 3
+  r200_dc_score_maximum_threshold: 505
+  r200_dc_score_minimum_threshold: 5
+  r200_dc_second_peak_threshold: 45
+  r200_dc_texture_count_threshold: 6
+  r200_dc_texture_difference_threshold: 35
+
+  r200_auto_exposure_bottom_edge: 208
+  r200_auto_exposure_left_edge: 479
+  r200_auto_exposure_right_edge: 436
+  r200_auto_exposure_top_edge: 217
+  r200_emitter_enabled: 1
+  r200_lr_auto_exposure_enabled: 0
+  r200_lr_exposure: 1
+  r200_lr_gain: 589
+
+  r200_auto_exposure_bottom_edge: 208
+  r200_auto_exposure_left_edge: 479
+  r200_auto_exposure_right_edge: 436
+  r200_auto_exposure_top_edge: 217
+  r200_dc_estimate_median_decrement: 5
+  r200_dc_estimate_median_increment: 5
+  r200_dc_lr_threshold: 14
+  r200_dc_median_threshold: 185
+  r200_dc_neighbor_threshold: 45
+  r200_dc_preset: 3
+  r200_dc_score_maximum_threshold: 505
+  r200_dc_score_minimum_threshold: 5
+  r200_dc_second_peak_threshold: 45
+  r200_dc_texture_count_threshold: 6
+  r200_dc_texture_difference_threshold: 35
+  r200_emitter_enabled: 1
+  r200_lr_auto_exposure_enabled: 0
+  r200_lr_exposure: 1
+  r200_lr_gain: 589
