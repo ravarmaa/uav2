@@ -9,7 +9,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
 
   map_frame: map
   odom_frame: odom
-  base_link_frame: fcu
+  base_link_frame: base_link
   world_frame: odom
 
 # -------------------------------------
@@ -86,7 +86,7 @@ ekf_se_map:
 
   map_frame: map
   odom_frame: odom
-  base_link_frame: fcu
+  base_link_frame: base_link
   world_frame: map
 
 # -------------------------------------

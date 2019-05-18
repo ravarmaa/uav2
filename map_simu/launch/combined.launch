@@ -4,7 +4,7 @@
        started you preferred RGB-D sensor and your IMU.
        TF between frame_id and the sensors should already be set too. -->
 
-  <arg name="frame_id"                default="fcu" />
+  <arg name="frame_id"                default="base_link" />
   <arg name="rgb_topic"               default="/camera/rgb/image_rect_color" />
   <arg name="depth_topic"             default="/camera/depth_registered/sw_registered/image_rect_raw" />
   <arg name="camera_info_topic"       default="/camera/rgb/camera_info" />
