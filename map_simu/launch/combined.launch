@@ -22,6 +22,7 @@
   <arg name="depth_topic_relay"         default="$(arg depth_topic)"/>
   <arg name="rgbd_topic"              default="rgbd_image" />
   <arg name="approx_sync"  default="true"/>
+  <arg name="cell_size" default="0.05"/>
 
   <!-- Localization-only mode -->
   <arg name="localization"      default="false"/>
@@ -59,6 +60,7 @@
       <remap from="odom"            to="/map_simu/odometry/filtered_map"/>
       
       <param name="Kp/DetectorStrategy"    type="string" value="6"/> <!-- use same features as odom -->
+      <param name="Grid/CellSize" type="double" value="$(arg cell_size)"/>
 
       <!-- localization mode -->
       <param name="Mem/InitWMWithAllNodes" type="string" value="$(arg localization)"/> 
