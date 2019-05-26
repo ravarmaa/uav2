@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='iris_with_kinect'>
+    <pose>0 0 0 0 0 0</pose>
+
+      <include>
+        <uri>model://iris_with_standoffs_demo</uri>
+        <pose>0 0 0 0 0 0</pose>
+      </include>
+
+    
+      <include>
+        <uri>model://kinect_depth</uri>
+        <pose>0.03 0 0.13 0 0.6 0</pose>
+      </include>
+	
+      <joint name="cam_mount" type="fixed">
+	<parent>iris_demo::iris::base_link</parent>
+	<child>kinect::cam_link</child>
+	<axis>
+	  <limit>
+	    <lower>0</lower>
+ 	    <upper>0</upper>
+	  </limit>
+	  <xyz>0 0 1</xyz>
+	  <use_parent_model_frame>true</use_parent_model_frame>
+	</axis>
+      </joint>
+
+      <!-- For Another Lidar Payload -->
+    </model>
+  </sdf>
+

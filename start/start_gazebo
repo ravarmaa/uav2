@@ -1,1 +1,1 @@
-roslaunch gazebo_ros empty_world.launch world_name:=$HOME/drone-ws/src/uav2/map_simu/worlds/iris_mapping.world extra_gazebo_args:="--verbose"
+roslaunch gazebo_ros empty_world.launch world_name:=$HOME/drone-ws/src/uav2/map_simu/worlds/scrapyard.world extra_gazebo_args:="--verbose"
